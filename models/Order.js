@@ -21,11 +21,18 @@ const orderSchema = new mongoose.Schema(
           type: Number,
           required: [true, "please entre price"],
         },
+        isActive: { type: Boolean, default: true },
       },
     ],
-
+    status: {
+      type: String,
+      required: [true, "please entre status"],
+      enum: ["processing", "completed", "cancel"],
+      default: "processing",
+    },
     isActive: { type: Boolean, default: true },
   },
+  
   { timestamps: true }
 );
 

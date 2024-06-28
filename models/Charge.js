@@ -8,7 +8,7 @@ const chargeSchema = new mongoose.Schema(
       required: [true, "please entre your name"],
     },
     price: {
-      type: number,
+      type: Number,
       
       required: [true, "please entre your price"],
     },

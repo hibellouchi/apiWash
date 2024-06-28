@@ -1,7 +1,7 @@
 const asyncHandler = require("express-async-handler");
 
 // Request get search
-exports.reqGetCustomer = asyncHandler(async (req, res, next) => {
+exports.reqGetCharge = asyncHandler(async (req, res, next) => {
   const { keyword } = req.body;
   let query = {};
 
