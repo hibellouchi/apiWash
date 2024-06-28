@@ -26,12 +26,6 @@ const userSchema = new mongoose.Schema(
       minlength: [6, "To short password"],
     },
 
-    role: { type: String, enum: ["user", "admin"], default: "user" },
-    cabinet: {
-      type: mongoose.Types.ObjectId,
-      ref: "CabinetSetting",
-      required: false,
-    },
     isActive: { type: Boolean, default: true },
   },
   { timestamps: true }

@@ -67,6 +67,7 @@ const getOne = (Model, fields) =>
   asyncHandler(async (req, res, next) => {
     const { id } = req.params;
     const newFields = fields.split(",").join(" ");
+    req.query = { isActive: true };
     const documents = await Model.findById(id).select(newFields);
     // if (documents.isActive === false) {
     //   return next(new ApiError(`No document for this id ${id}`, 404));
