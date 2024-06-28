@@ -9,7 +9,6 @@ const chargeSchema = new mongoose.Schema(
     },
     price: {
       type: Number,
-
       required: [true, "please entre your price"],
     },
 
