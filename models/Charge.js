@@ -4,15 +4,14 @@ const chargeSchema = new mongoose.Schema(
   {
     name: {
       type: String,
-      
+
       required: [true, "please entre your name"],
     },
     price: {
-      type: number,
-      
+      type: Number,
+
       required: [true, "please entre your price"],
     },
-   
 
     isActive: { type: Boolean, default: true },
   },

@@ -34,7 +34,7 @@ router
 // get one Customer
 router
   .route(`/get/:id`)
-  .post(idValidator, getOne(Employee, "name,phone,cin,adress"));
+  .post(idValidator, getOne(Employee, "name,phone,cin,adress,isActive"));
 
 // create new Customer
 router
