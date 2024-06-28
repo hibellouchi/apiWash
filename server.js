@@ -15,8 +15,8 @@ const userRoutes = require("./routes/user");
 const authRoutes = require("./routes/auth");
 const customerRoutes = require("./routes/customer");
 const employeeRoutes = require("./routes/employee");
-// const chargeRoutes = require("./routes/charge");
-// const categoryClotheRoutes = require("./routes/categoryClothe");
+const chargeRoutes = require("./routes/charge");
+const categoryClotheRoutes = require("./routes/categoryClothe");
 // const orderRoutes = require("./routes/order");
 
 const { authenticate } = require("./middlewares/auth");
@@ -50,9 +50,9 @@ app.use("/auth", authRoutes);
 app.use("/user", authenticate, userRoutes);
 app.use("/customer", authenticate, customerRoutes);
 app.use("/employee", authenticate, employeeRoutes);
-// app.use("/charge", authenticate, chargeRoutes);
-// app.use("/category-clothe", authenticate, categoryClotheRoutes);
-// app.use("/order", authenticate, orderRoutes);
+app.use("/charge", authenticate, chargeRoutes);
+app.use("/category-clothe", authenticate, categoryClotheRoutes);
+//app.use("/order", authenticate, orderRoutes);
 
 app.all("*", (req, res, next) => {
   next(new ApiError(`cant find this route: ${req.originalUrl}`, 400));
