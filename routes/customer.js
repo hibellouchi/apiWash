@@ -31,7 +31,7 @@ const {
 // get all Customer
 router
   .route(`/all`)
-  .post(reqGetCustomer, getAll(Customer, "name,phone,createdAt"));
+  .post(reqGetCustomer, getAll(Customer, "name,phone,createdAt,userId"));
 // get one Customer
 router
   .route(`/get/:id`)

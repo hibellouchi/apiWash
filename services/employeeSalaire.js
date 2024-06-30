@@ -1,12 +1,19 @@
 const { genSalt } = require("bcrypt");
 const asyncHandler = require("express-async-handler");
+const mongoose = require("mongoose");
 
-// Request get search
+// Request get all
 exports.reqGetEmployeeSalaire = asyncHandler(async (req, res, next) => {
   const { keyword } = req.body;
   let query = {};
 
-  query.$or = [{ name: { $regex: keyword, $options: "i" }, isActive: true }];
+  query.$or = [
+    {
+      employee: { $regex: keyword, $options: "i" },
+      isActive: true,
+      userId: new mongoose.Types.ObjectId(req.user.userId),
+    },
+  ];
 
   req.query = query;
   next();
@@ -17,6 +24,7 @@ exports.reqCreateEmployeeSalaire = asyncHandler(async (req, res, next) => {
   req.body = {
     employee: req.body.employee,
     salaire: req.body.salaire,
+    userId: req.user.userId,
   };
   next();
 });

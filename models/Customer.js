@@ -4,6 +4,7 @@ const customerSchema = new mongoose.Schema(
   {
     name: {
       type: String,
+      lowercase: true,
       required: [true, "please entre customer name"],
     },
     phone: {
@@ -11,6 +12,11 @@ const customerSchema = new mongoose.Schema(
       required: [true, "please entre customer phone"],
     },
     isActive: { type: Boolean, default: true },
+    userId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
+    },
   },
   { timestamps: true }
 );

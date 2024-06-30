@@ -2,14 +2,15 @@ const mongoose = require("mongoose");
 
 const orderSchema = new mongoose.Schema(
   {
-    custemer: {
-      type: mongoose.Types.ObjectId,
-      ref: "Custemer",
+    customer: {
+      type: String,
+      lowercase: true,
+      required: [true, "please entre customer"],
     },
 
     categoryClothe: {
-      type: mongoose.Types.ObjectId,
-      ref: "CategoryClothe",
+      type: String,
+      required: [true, "please entre categoryClothe"],
     },
     quantity: {
       type: Number,
@@ -24,10 +25,15 @@ const orderSchema = new mongoose.Schema(
     status: {
       type: String,
       required: [true, "please entre status"],
-      enum: ["processing", "completed", "cancel"],
-      default: "processing",
+      enum: ["No Paid", "Paid", "Canceled"],
+      default: "No Paid",
     },
     isActive: { type: Boolean, default: true },
+    userId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
+    },
   },
 
   { timestamps: true }

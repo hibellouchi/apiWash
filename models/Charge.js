@@ -4,7 +4,7 @@ const chargeSchema = new mongoose.Schema(
   {
     name: {
       type: String,
-
+      lowercase: true,
       required: [true, "please entre your name"],
     },
     price: {
@@ -13,6 +13,11 @@ const chargeSchema = new mongoose.Schema(
     },
 
     isActive: { type: Boolean, default: true },
+    userId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
+    },
   },
   { timestamps: true }
 );

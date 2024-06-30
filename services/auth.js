@@ -5,11 +5,10 @@ const ApiError = require("../utils/apiError");
 //models
 const User = require("../models/User");
 
-
 // Register a new user
 const register = asyncHandler(async (req, res, next) => {
   const { firstName, lastName, email, password } = req.body;
-  
+
   const user = await User.findOne({ email });
   if (user) {
     return next(new ApiError("user already exists!", 400));
@@ -17,16 +16,15 @@ const register = asyncHandler(async (req, res, next) => {
   const salt = await bcrypt.genSalt(10);
   const hashedPassword = await bcrypt.hash(password, salt);
 
-  const newUser = new User({
+  await User.create({
     firstName,
     lastName,
     email,
     password: hashedPassword,
   });
-  await newUser.save();
-  return res.status(200);
-});
 
+  return res.status(201).send();
+});
 
 // Login with an existing user
 const login = asyncHandler(async (req, res, next) => {
@@ -42,7 +40,7 @@ const login = asyncHandler(async (req, res, next) => {
   }
 
   const token = jwt.sign(
-    { userId: user._id },
+    { userId: user._id, email: user.email, firstName: user.firstName },
     process.env.SECRET_KEY,
     {
       expiresIn: process.env.EXPIRES_IN,

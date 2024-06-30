@@ -14,7 +14,8 @@ const authenticate = asyncHandler(async (req, res, next) => {
   const decodedToken = jwt.verify(token, process.env.SECRET_KEY);
   const user = {
     userId: decodedToken.userId,
-    role: decodedToken.role,
+    email: decodedToken.email,
+    firstName: decodedToken.firstName,
   };
   if (!user) {
     return next(new ApiError("User not found", 404));

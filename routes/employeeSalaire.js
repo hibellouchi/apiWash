@@ -26,6 +26,7 @@ const {
 //reqHandel
 const {
   reqGetEmployeeSalaire,
+
   reqCreateEmployeeSalaire,
   reqEditeEmployeeSalaire,
 } = require("../services/employeeSalaire");
@@ -33,7 +34,10 @@ const {
 // get all Customer
 router
   .route(`/all`)
-  .post(reqGetEmployeeSalaire, getAll(EmployeeSalaire, "employee,salaire"));
+  .post(
+    reqGetEmployeeSalaire,
+    getAll(EmployeeSalaire, "employee,salaire,createAt")
+  );
 // get one Customer
 router
   .route(`/get/:id`)

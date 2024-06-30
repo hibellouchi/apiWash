@@ -33,7 +33,7 @@ const {
 // get all Customer
 router
   .route(`/all`)
-  .post(reqGetCategoryClothe, getAll(CategoryClothe, "name,price"));
+  .post(reqGetCategoryClothe, getAll(CategoryClothe, "name,price,createdAt"));
 // get one Customer
 router
   .route(`/get/:id`)
