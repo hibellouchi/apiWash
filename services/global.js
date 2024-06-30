@@ -40,6 +40,21 @@ const getCount = (Model) =>
 
     res.status(200).json({ count: documentsCounts });
   });
+const getTotalPrice = (Model, Fields) =>
+  asyncHandler(async (req, res) => {
+    req.query = {
+      isActive: true,
+      userId: new mongoose.Types.ObjectId(req.user.userId),
+    };
+
+    // Build query
+    const documentsPrice = await Model.find(req.query).select(Fields);
+
+    // Calculate the sum of the prices
+    const totalSum = documentsPrice.reduce((acc, doc) => acc + doc.price, 0);
+
+    res.status(200).json({ sum: totalSum });
+  });
 
 //global delete one document
 const deleteOne = (Model) =>
@@ -119,4 +134,12 @@ const getOne = (Model, fields) =>
     res.status(200).json({ data: documents });
   });
 
-module.exports = { getAll, deleteOne, createOne, getOne, editOne, getCount };
+module.exports = {
+  getAll,
+  deleteOne,
+  createOne,
+  getOne,
+  editOne,
+  getCount,
+  getTotalPrice,
+};

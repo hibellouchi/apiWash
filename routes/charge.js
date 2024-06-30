@@ -9,6 +9,7 @@ const {
   editOne,
   deleteOne,
   getOne,
+  getTotalPrice,
 } = require("../services/global");
 
 //models
@@ -28,17 +29,20 @@ const {
   reqEditeCharge,
 } = require("../services/charge");
 
-// get all Customer
+// sum price all charge
+router.route(`/sum`).post(getTotalPrice(Charge, "price"));
+
+// get all charge
 router.route(`/all`).post(reqGetCharge, getAll(Charge, "name,price,createdAt"));
-// get one Customer
+// get one charge
 router.route(`/get/:id`).post(idValidator, getOne(Charge, "name,price"));
-// create new Customer
+// create new charge
 router
   .route(`/add`)
   .post(createChargeValidator, reqCreateCharge, createOne(Charge));
-//edit Customer
+//edit charge
 router.route(`/edit/:id`).put(idValidator, reqEditeCharge, editOne(Charge));
-//delete Customer
+//delete charge
 router.route(`/delete/:id`).put(idValidator, deleteOne(Charge));
 
 module.exports = router;
