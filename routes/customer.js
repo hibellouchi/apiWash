@@ -9,6 +9,7 @@ const {
   editOne,
   deleteOne,
   getOne,
+  getCount,
 } = require("../services/global");
 
 //models
@@ -27,7 +28,8 @@ const {
   reqCreateCustomer,
   reqEditeCustomer,
 } = require("../services/customer");
-
+// get Count Customer
+router.route(`/count`).post(getCount(Order));
 // get all Customer
 router
   .route(`/all`)

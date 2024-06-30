@@ -31,6 +31,9 @@ const {
   reqEditeEmployeeSalaire,
 } = require("../services/employeeSalaire");
 
+// sum price all charge
+router.route(`/sum`).post(getTotalPrice(Charge, "price"));
+
 // get all Customer
 router
   .route(`/all`)

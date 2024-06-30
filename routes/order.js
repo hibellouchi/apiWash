@@ -29,6 +29,9 @@ const {
   reqEditeOrder,
 } = require("../services/order");
 
+// sum price all charge
+router.route(`/sum`).post(getTotalPrice(Charge, "price"));
+
 // get Count Customer
 router.route(`/count`).post(getCount(Order));
 
@@ -39,7 +42,7 @@ router
     reqGetOrder,
     getAll(Order, "customer,categoryClothe,price,quantity,status,createdAt")
   );
-
+ks
 // get one Customer
 router
   .route(`/get/:id`)
