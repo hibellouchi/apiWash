@@ -19,7 +19,7 @@ const Order = require("../models/Order");
 const { idValidator } = require("../utils/validators/idValidator");
 
 //validator
-const { createOrderValidator } = require("../utils/validators/order");
+const { orderValidator } = require("../utils/validators/order");
 
 //reqHandel
 const {
@@ -29,16 +29,24 @@ const {
 } = require("../services/order");
 
 // get all Customer
-router.route(`/all`).post(reqGetOrder, getAll(Order, "customer,clothe,status"));
-// get one Customer
-router.route(`/:id`).post(idValidator, getOne(Order, "customer,clothe,status"));
-// create new Customer
 router
-  .route(`/add`)
-  .post(createOrderValidator, reqCreateOrder, createOne(Order));
+  .route(`/all`)
+  .post(
+    reqGetOrder,
+    getAll(Order, "customer,categoryClothe,price,quantity,status")
+  );
+// get one Customer
+router
+  .route(`/get/:id`)
+  .post(
+    idValidator,
+    getOne(Order, "customer,categoryClothe,price,quantity,clothe,status")
+  );
+// create new Customer
+router.route(`/add`).post(orderValidator, reqCreateOrder, createOne(Order));
 //edit Customer
 router.route(`/edit/:id`).put(idValidator, reqEditeOrder, editOne(Order));
 //delete Customer
 router.route(`/delete/:id`).put(idValidator, deleteOne(Order));
 
-module.exports = router
+module.exports = router;

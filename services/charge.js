@@ -14,11 +14,8 @@ exports.reqGetCharge = asyncHandler(async (req, res, next) => {
 // Request create
 exports.reqCreateCharge = asyncHandler(async (req, res, next) => {
   req.body = {
-    custemer: req.body.custemer,
-    clothes: req.body.clothes,
-    $push: {
-      clothes: req.body.clothes,
-    },
+    name: req.body.name,
+    price: req.body.price,
   };
   next();
 });

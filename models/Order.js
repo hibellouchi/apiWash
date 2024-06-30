@@ -6,24 +6,21 @@ const orderSchema = new mongoose.Schema(
       type: mongoose.Types.ObjectId,
       ref: "Custemer",
     },
-    clothes: [
-      {
-        categoryClothe: {
-          type: mongoose.Types.ObjectId,
-          ref: "CategoryClothe",
-        },
-        quantity: {
-          type: Number,
-          required: [true, "please entre quantity"],
-        },
 
-        price: {
-          type: Number,
-          required: [true, "please entre price"],
-        },
-        isActive: { type: Boolean, default: true },
-      },
-    ],
+    categoryClothe: {
+      type: mongoose.Types.ObjectId,
+      ref: "CategoryClothe",
+    },
+    quantity: {
+      type: Number,
+      required: [true, "please entre quantity"],
+    },
+
+    price: {
+      type: Number,
+      required: [true, "please entre price"],
+    },
+
     status: {
       type: String,
       required: [true, "please entre status"],
@@ -32,7 +29,7 @@ const orderSchema = new mongoose.Schema(
     },
     isActive: { type: Boolean, default: true },
   },
-  
+
   { timestamps: true }
 );
 

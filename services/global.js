@@ -16,6 +16,7 @@ const getAll = (Model, Fields) =>
       .paginate()
       //.search()
       .limitFields(Fields)
+
       .sort();
 
     // Execute query

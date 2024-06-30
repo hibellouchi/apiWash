@@ -29,9 +29,9 @@ const {
 } = require("../services/charge");
 
 // get all Customer
-router.route(`/all`).post(reqGetCharge, getAll(Charge, "name,price"));
+router.route(`/all`).post(reqGetCharge, getAll(Charge, "name,price,createdAt"));
 // get one Customer
-router.route(`/:id`).post(idValidator, getOne(Charge, "name,price"));
+router.route(`/get/:id`).post(idValidator, getOne(Charge, "name,price"));
 // create new Customer
 router
   .route(`/add`)
@@ -41,4 +41,4 @@ router.route(`/edit/:id`).put(idValidator, reqEditeCharge, editOne(Charge));
 //delete Customer
 router.route(`/delete/:id`).put(idValidator, deleteOne(Charge));
 
-module.exports = router
+module.exports = router;

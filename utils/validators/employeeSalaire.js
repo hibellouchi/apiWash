@@ -1,17 +1,17 @@
 const { check } = require("express-validator");
 const validatorMiddlewares = require("../../middlewares/validator");
-
+const Employee = require("../../models/Employee");
 exports.employeeSalaireValidator = [
-    check("employee")
+  check("employee")
     .notEmpty()
-    .withMessage("please entre customer")
+    .withMessage("please entre employee")
     .isMongoId()
     .withMessage("invaled id")
-    .custom((customerId) =>
-      Customer.findById(customerId).then((customer) => {
-        if (!customer) {
+    .custom((employeeId) =>
+      Employee.findById(employeeId).then((employee) => {
+        if (!employee) {
           return Promise.reject(
-            new Error(`No customer for this id : ${customerId}`)
+            new Error(`No employee for this id : ${employeeId}`)
           );
         }
       })

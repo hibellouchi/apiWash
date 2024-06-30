@@ -19,7 +19,9 @@ const CategoryClothe = require("../models/CategoryClothe");
 const { idValidator } = require("../utils/validators/idValidator");
 
 //validator
-const { createCategoryClotheValidator } = require("../utils/validators/categoryClothe");
+const {
+  createCategoryClotheValidator,
+} = require("../utils/validators/categoryClothe");
 
 //reqHandel
 const {
@@ -29,16 +31,26 @@ const {
 } = require("../services/categoryClothe");
 
 // get all Customer
-router.route(`/all`).post(reqGetCategoryClothe, getAll(CategoryClothe, "name,price"));
+router
+  .route(`/all`)
+  .post(reqGetCategoryClothe, getAll(CategoryClothe, "name,price"));
 // get one Customer
-router.route(`/:id`).post(idValidator, getOne(CategoryClothe, "name,price"));
+router
+  .route(`/get/:id`)
+  .post(idValidator, getOne(CategoryClothe, "name,price"));
 // create new Customer
 router
   .route(`/add`)
-  .post(createCategoryClotheValidator, reqCreateCategoryClothe, createOne(CategoryClothe));
+  .post(
+    createCategoryClotheValidator,
+    reqCreateCategoryClothe,
+    createOne(CategoryClothe)
+  );
 //edit Customer
-router.route(`/edit/:id`).put(idValidator, reqEditeCategoryClothe, editOne(CategoryClothe));
+router
+  .route(`/edit/:id`)
+  .put(idValidator, reqEditeCategoryClothe, editOne(CategoryClothe));
 //delete Customer
 router.route(`/delete/:id`).put(idValidator, deleteOne(CategoryClothe));
 
-module.exports = router
+module.exports = router;

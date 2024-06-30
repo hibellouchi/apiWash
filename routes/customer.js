@@ -29,9 +29,13 @@ const {
 } = require("../services/customer");
 
 // get all Customer
-router.route(`/all`).post(reqGetCustomer, getAll(Customer, "name,phone"));
+router
+  .route(`/all`)
+  .post(reqGetCustomer, getAll(Customer, "name,phone,createdAt"));
 // get one Customer
-router.route(`/:id`).post(idValidator, getOne(Customer, "name,phone"));
+router
+  .route(`/get/:id`)
+  .post(idValidator, getOne(Customer, "name,phone,createdAt"));
 // create new Customer
 router
   .route(`/add`)

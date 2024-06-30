@@ -30,7 +30,7 @@ const {
 // get all Customer
 router
   .route(`/all`)
-  .post(reqGetEmployee, getAll(Employee, "name,phone,cin,adress"));
+  .post(reqGetEmployee, getAll(Employee, "name,phone,cin,adress,createdAt"));
 // get one Customer
 router
   .route(`/get/:id`)
