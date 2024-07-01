@@ -7,7 +7,7 @@ const employeeSalaireSchema = new mongoose.Schema(
       lowercase: true,
       required: [true, "please entre salaire"],
     },
-    salaire: {
+    price: {
       type: Number,
       required: [true, "please entre salaire"],
     },

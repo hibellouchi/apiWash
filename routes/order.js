@@ -7,9 +7,8 @@ const {
   getAll,
   createOne,
   editOne,
-  deleteOne,
+
   getOne,
-  getCount,
 } = require("../services/global");
 
 //models
@@ -27,22 +26,20 @@ const {
   reqGetOrder,
   reqCreateOrder,
   reqEditeOrder,
+  reqEditeStatusOrder,
 } = require("../services/order");
-
-// sum price all charge
-router.route(`/sum`).post(getTotalPrice(Charge, "price"));
-
-// get Count Customer
-router.route(`/count`).post(getCount(Order));
 
 // get all Customer
 router
   .route(`/all`)
   .post(
     reqGetOrder,
-    getAll(Order, "customer,categoryClothe,price,quantity,status,createdAt")
+    getAll(
+      Order,
+      "customer,categoryClothe,price,total,quantity,status,createdAt"
+    )
   );
-ks
+
 // get one Customer
 router
   .route(`/get/:id`)
@@ -54,5 +51,9 @@ router
 router.route(`/add`).post(orderValidator, reqCreateOrder, createOne(Order));
 //edit Customer
 router.route(`/edit/:id`).put(idValidator, reqEditeOrder, editOne(Order));
+//edit Customer status
+router
+  .route(`/edit-status/:id`)
+  .put(idValidator, reqEditeStatusOrder, editOne(Order));
 
 module.exports = router;

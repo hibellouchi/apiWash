@@ -21,7 +21,9 @@ const orderSchema = new mongoose.Schema(
       type: Number,
       required: [true, "please entre price"],
     },
-
+    total: {
+      type: Number,
+    },
     status: {
       type: String,
       required: [true, "please entre status"],

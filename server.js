@@ -19,6 +19,7 @@ const chargeRoutes = require("./routes/charge");
 const categoryClotheRoutes = require("./routes/categoryClothe");
 const orderRoutes = require("./routes/order");
 const EmployeeSalaireRoutes = require("./routes/employeeSalaire");
+const dashboardRoutes = require("./routes/dashboard");
 
 const { authenticate } = require("./middlewares/auth");
 
@@ -55,6 +56,7 @@ app.use("/charge", authenticate, chargeRoutes);
 app.use("/category-clothe", authenticate, categoryClotheRoutes);
 app.use("/order", authenticate, orderRoutes);
 app.use("/employee-salaire", authenticate, EmployeeSalaireRoutes);
+app.use("/dashboard", authenticate, dashboardRoutes);
 
 app.all("*", (req, res, next) => {
   next(new ApiError(`cant find this route: ${req.originalUrl}`, 400));

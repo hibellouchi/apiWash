@@ -25,6 +25,7 @@ exports.reqCreateOrder = asyncHandler(async (req, res, next) => {
     quantity: req.body.quantity,
     price: req.body.price,
     status: req.body.status,
+    total: req.body.price * req.body.quantity,
     userId: req.user.userId,
   };
   next();
@@ -37,6 +38,14 @@ exports.reqEditeOrder = asyncHandler(async (req, res, next) => {
     categoryClothe: req.body.categoryClothe,
     quantity: req.body.quantity,
     price: req.body.price,
+    total: req.body.price * req.body.quantity,
+    status: req.body.status,
+  };
+  next();
+});
+// Request edit status
+exports.reqEditeStatusOrder = asyncHandler(async (req, res, next) => {
+  req.body = {
     status: req.body.status,
   };
   next();

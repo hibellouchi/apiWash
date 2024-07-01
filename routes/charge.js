@@ -9,7 +9,6 @@ const {
   editOne,
   deleteOne,
   getOne,
-  getTotalPrice,
 } = require("../services/global");
 
 //models
@@ -28,9 +27,6 @@ const {
   reqCreateCharge,
   reqEditeCharge,
 } = require("../services/charge");
-
-// sum price all charge
-router.route(`/sum`).post(getTotalPrice(Charge, "price"));
 
 // get all charge
 router.route(`/all`).post(reqGetCharge, getAll(Charge, "name,price,createdAt"));

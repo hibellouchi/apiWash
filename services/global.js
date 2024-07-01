@@ -6,12 +6,13 @@ const ApiError = require("../utils/apiError");
 //global get all document
 const getAll = (Model, Fields) =>
   asyncHandler(async (req, res) => {
-    if (!req.query) {
+    if (Object.keys(req.query).length === 0) {
       req.query = {
         isActive: true,
         userId: new mongoose.Types.ObjectId(req.user.userId),
       };
     }
+
     // Build query
     const documentsCounts = await Model.countDocuments(req.query);
 
@@ -40,15 +41,17 @@ const getCount = (Model) =>
 
     res.status(200).json({ count: documentsCounts });
   });
-const getTotalPrice = (Model, Fields) =>
+const getTotalPrice = (Model) =>
   asyncHandler(async (req, res) => {
-    req.query = {
-      isActive: true,
-      userId: new mongoose.Types.ObjectId(req.user.userId),
-    };
+    if (Object.keys(req.query).length === 0) {
+      req.query = {
+        isActive: true,
+        userId: new mongoose.Types.ObjectId(req.user.userId),
+      };
+    }
 
     // Build query
-    const documentsPrice = await Model.find(req.query).select(Fields);
+    const documentsPrice = await Model.find(req.query).select("price");
 
     // Calculate the sum of the prices
     const totalSum = documentsPrice.reduce((acc, doc) => acc + doc.price, 0);

@@ -23,7 +23,7 @@ exports.reqGetEmployeeSalaire = asyncHandler(async (req, res, next) => {
 exports.reqCreateEmployeeSalaire = asyncHandler(async (req, res, next) => {
   req.body = {
     employee: req.body.employee,
-    salaire: req.body.salaire,
+    price: req.body.price,
     userId: req.user.userId,
   };
   next();
@@ -33,7 +33,7 @@ exports.reqCreateEmployeeSalaire = asyncHandler(async (req, res, next) => {
 exports.reqEditeEmployeeSalaire = asyncHandler(async (req, res, next) => {
   req.body = {
     employee: req.body.employee,
-    salaire: req.body.salaire,
+    price: req.body.price,
   };
   next();
 });

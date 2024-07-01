@@ -31,20 +31,17 @@ const {
   reqEditeEmployeeSalaire,
 } = require("../services/employeeSalaire");
 
-// sum price all charge
-router.route(`/sum`).post(getTotalPrice(Charge, "price"));
-
 // get all Customer
 router
   .route(`/all`)
   .post(
     reqGetEmployeeSalaire,
-    getAll(EmployeeSalaire, "employee,salaire,createAt")
+    getAll(EmployeeSalaire, "employee,price,createAt")
   );
 // get one Customer
 router
   .route(`/get/:id`)
-  .post(idValidator, getOne(EmployeeSalaire, "emoloyee,salaire"));
+  .post(idValidator, getOne(EmployeeSalaire, "emoloyee,price"));
 // create new Customer
 router
   .route(`/add`)
