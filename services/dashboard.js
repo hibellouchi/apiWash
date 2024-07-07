@@ -20,6 +20,11 @@ exports.dashboardApi = asyncHandler(async (req, res) => {
     isActive: true,
     userId: new mongoose.Types.ObjectId(req.user.userId),
   };
+  const queryOrder = {
+    status: { $in: ["Paid", "No Paid"] },
+    isActive: true,
+    userId: new mongoose.Types.ObjectId(req.user.userId),
+  };
   const queryOrderNoPaid = {
     status: "No Paid",
     isActive: true,
@@ -47,16 +52,16 @@ exports.dashboardApi = asyncHandler(async (req, res) => {
   const chargePrice = await Charge.find(query).select("price");
   const chargeSum = chargePrice.reduce((acc, doc) => acc + doc.price, 0);
   //Order sum
-  const orderPrice = await Order.find(query).select("price");
-  const orderSum = orderPrice.reduce((acc, doc) => acc + doc.price, 0);
+  const ordertotal = await Order.find(queryOrder).select("total");
+  const orderSum = ordertotal.reduce((acc, doc) => acc + doc.total, 0);
   //Order sum paid
-  const orderPaidPrice = await Order.find(queryOrderPaid).select("price");
-  const orderPaidSum = orderPaidPrice.reduce((acc, doc) => acc + doc.price, 0);
+  const orderPaidtotal = await Order.find(queryOrderPaid).select("total");
+  const orderPaidSum = orderPaidtotal.reduce((acc, doc) => acc + doc.total, 0);
 
   //Order sum no paid
-  const orderNoPaidPrice = await Order.find(queryOrderNoPaid).select("price");
-  const orderNoPaidSum = orderNoPaidPrice.reduce(
-    (acc, doc) => acc + doc.price,
+  const orderNoPaidtotal = await Order.find(queryOrderNoPaid).select("total");
+  const orderNoPaidSum = orderNoPaidtotal.reduce(
+    (acc, doc) => acc + doc.total,
     0
   );
 
