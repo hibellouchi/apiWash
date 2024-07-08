@@ -36,7 +36,7 @@ router
   .route(`/all`)
   .post(
     reqGetEmployeeSalaire,
-    getAll(EmployeeSalaire, "employee,price,createAt")
+    getAll(EmployeeSalaire, "employee,price,createdAt")
   );
 // get one Customer
 router

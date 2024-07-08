@@ -3,6 +3,6 @@ const validatorMiddlewares = require("../../middlewares/validator");
 const Employee = require("../../models/Employee");
 exports.employeeSalaireValidator = [
   check("employee").notEmpty().withMessage("please entre Employee name"),
-  check("salaire").notEmpty().withMessage("please entre Employee salaire"),
+  check("price").notEmpty().withMessage("please entre Employee salaire"),
   validatorMiddlewares,
 ];
