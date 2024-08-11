@@ -41,11 +41,11 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(express.json({ limit: "1mb" }));
 app.use(express.urlencoded({ limit: "1mb", extended: true }));
 
-// morgan
-if (process.env.NODE_ENV === "development") {
-  app.use(morgan("dev"));
-  console.log(`mode: ${process.env.NODE_ENV}`);
-}
+// // morgan
+// if (process.env.NODE_ENV === "development") {
+//   app.use(morgan("dev"));
+//   console.log(`mode: ${process.env.NODE_ENV}`);
+// }
 
 //Routes get
 app.use("/auth", authRoutes);
